@@ -15,11 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li ><a href=" {{ route('users.index')}} ">Usuarios<span class="sr-only">(current)</span></a></li>
-        <li ><a href=" {{ route('business.index')}} ">Empresas<span class="sr-only">(current)</span></a></li>
-        <li ><a href=" {{ route('courts.index')}} ">Canchas<span class="sr-only">(current)</span></a></li>
-        <li ><a href=" {{ route('turns.index')}} ">Turnos<span class="sr-only">(current)</span></a></li>
-        <li ><a href=" {{ route('reservations.index')}} ">Reservasiones<span class="sr-only">(current)</span></a></li>
-        <li ><a href=" {{ route('bookings.index')}} ">Bookings<span class="sr-only">(current)</span></a></li>
+        <li ><a href=" {{ route('markets.index')}} ">Empresas<span class="sr-only">(current)</span></a></li>
       </ul>
 
       

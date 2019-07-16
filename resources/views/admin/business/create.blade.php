@@ -22,7 +22,7 @@
 <div class="container">
 	<h3>Nuevo Negocio</h3>
 
-	{!! Form::open(['route'=>'business.store', 'method'=>'POST']) !!}
+	{!! Form::open(['route'=>'markets.store', 'method'=>'POST']) !!}
 		<div class="form-group">
 			{!! Form::label('name','Nombre Empresa') !!}
 			{!! Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre','required']) !!}
@@ -39,6 +39,15 @@
 
 		<div class="form-group" style="display: none;">
 			{!! Form::text('longitude',null,['class'=>'form-control','id'=>'longitude','placeholder'=>'Direccion','required']) !!}
+		</div>
+		<div class="form-group">
+		{!! Form::label('mp','MercadoPago') !!}
+		{!! Form::checkbox('nav', '1', false); !!}
+		</div>
+
+		<div class="form-group">
+		{!! Form::label('descripcion','Descripcion*') !!}
+		{!! Form::textarea('descripcion',null,['class'=>'form-control','id'=>'trumbowyg-demo','placeholder'=>'Descripcion','required']) !!}
 		</div>
 		
 		{!! Form::label('Geolocalizació','Geolocalizació (Doble Click para colorcar marca)') !!}

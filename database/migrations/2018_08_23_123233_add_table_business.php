@@ -14,16 +14,15 @@ class AddTableBusiness extends Migration
     public function up()
     {
         //
-        Schema::create('business', function (Blueprint $table) {
+        Schema::create('markets', function (Blueprint $table) {
             $table->increments('id');            
             $table->string('name');
+            $table->enum('state',['0','1','2'])->default('0');
+            $table->enum('mp',['0','1'])->default('0');
+            $table->longText('descripcion');
             $table->string('ubicacion')->unique();
             $table->string('latitude')->unique();
             $table->string('longitude')->unique();
-
-            //clave foranea
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             
             $table->timestamps();
         });

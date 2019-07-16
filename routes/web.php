@@ -17,10 +17,10 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function(){
 		return view('admin.index');
 	})->name('admin.inicio');
 
-	Route::resource('business','BusinessController');
-	Route::get('business/{id}/destroy',[
-		'uses'=>'BusinessController@destroy',
-		'as'=>'business.destroy'
+	Route::resource('markets','MarketController');
+	Route::get('markets/{id}/destroy',[
+		'uses'=>'MarketController@destroy',
+		'as'=>'markets.destroy'
 	]);
 
 	Route::resource('users','UsersController');
@@ -29,80 +29,16 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function(){
 		'as'=>'users.destroy'
 	]);
 
-	Route::resource('courts','CourtsController');
-	Route::get('court/{id}/destroy',[
-		'uses'=>'CourtsController@destroy',
-		'as'=>'court.destroy'
+	Route::get('market/{id}/post',[
+		'uses'=>'MarketController@post',
+		'as'=>'market.post'
 	]);
-
-	Route::resource('turns','TurnsController');
-	Route::get('turn/{id}/destroy',[
-		'uses'=>'TurnsController@destroy',
-		'as'=>'turn.destroy'
-	]);
-
-	Route::resource('reservations','ReservationsController');
-	Route::get('reservation/{id}/destroy',[
-		'uses'=>'ReservationsController@destroy',
-		'as'=>'reservation.destroy'
-	]);
-
-	Route::resource('bookings','BookingController');
-	Route::get('bookings/{id}/destroy',[
-		'uses'=>'BookingController@destroy',
-		'as'=>'bookings.destroy'
+	Route::get('market/{id}/undpost',[
+		'uses'=>'MarketController@undpost',
+		'as'=>'market.undpost'
 	]);
 });
 
-Route::group(['prefix'=>'encargado','middleware'=>['auth','encargado']], function(){
-
-	Route::get('/',function(){
-		return view('business.index');
-	})->name('encargado.inicio');
-
-	Route::resource('businessUsers','BusinessUsersController');
-	Route::get('business/{id}/destroy',[
-		'uses'=>'BusinessUsersController@destroy',
-		'as'=>'businessUser.destroy'
-	]);
-
-
-	Route::resource('fields','FieldsUsersController');
-	Route::get('fields/{id}/destroy',[
-		'uses'=>'FieldsUsersController@destroy',
-		'as'=>'fields.destroy'
-	]);
-
-	/*Route::resource('turns','TurnsController');
-	Route::get('turn/{id}/destroy',[
-		'uses'=>'TurnsController@destroy',
-		'as'=>'turn.destroy'
-	]);
-
-	Route::resource('reservations','ReservationsController');
-	Route::get('reservation/{id}/destroy',[
-		'uses'=>'ReservationsController@destroy',
-		'as'=>'reservation.destroy'
-	]);
-
-	Route::resource('bookings','BookingController');
-	Route::get('bookings/{id}/destroy',[
-		'uses'=>'BookingController@destroy',
-		'as'=>'bookings.destroy'
-	]);*/
-});
-
-Route::group(['prefix'=>'cliente','middleware'=>['auth','cliente']], function(){
-
-	Route::get('/',function(){
-		return view('customers.index');
-	})->name('cliente.inicio');
-
-	Route::get('/reservations/{user_id}', [
-		'uses'=>'ReservationUsersController@index',
-		'as'=>'customers.reservations'
-	]);
-});
 
 
 Auth::routes();
