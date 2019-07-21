@@ -135,5 +135,13 @@ class MarketController extends Controller
     $json = json_decode($markets,true);
     return response()->json(array('result'=>$json));
   }
-  
+
+  public function ApiMarketsCreate(Request $request){
+    //dd('todo ok', $request);
+    $busines = new Market($request->all());
+      //el administrador deberia elegir al usuario... no ser el usuario
+      $busines->save();
+      flash('Se creado la empresa ' . $busines->name)->success();
+      //return redirect()->st
+    }
 }

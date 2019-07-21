@@ -25,4 +25,8 @@ Route::group(['prefix'=>'/v1','middleware' => 'cors'], function(){
 		'uses'=>'MarketController@ApiMarkets'
 	]);
 
+	Route::post('/markets',[
+		'uses'=>'MarketController@ApiMarketsCreate'
+	]);
+
 });
