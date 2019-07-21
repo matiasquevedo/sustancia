@@ -16,11 +16,11 @@ class AddTableBusiness extends Migration
         //
         Schema::create('markets', function (Blueprint $table) {
             $table->increments('id');            
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->enum('state',['0','1','2'])->default('0');
             $table->enum('mp',['0','1'])->default('0');
-            $table->longText('descripcion');
-            $table->string('ubicacion')->unique();
+            $table->longText('descripcion')->nullable();
+            $table->string('ubicacion')->nullable();
             $table->string('latitude')->unique();
             $table->string('longitude')->unique();
             

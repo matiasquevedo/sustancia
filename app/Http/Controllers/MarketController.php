@@ -42,7 +42,23 @@ class MarketController extends Controller
       //
       //dd($request);
       $busines = new Market($request->all());
-      //el administrador deberia elegir al usuario... no ser el usuario
+      if($request->name){
+
+      }else{
+        $busines->name = "Sin Nombre";
+      }
+
+      if($request->ubicacion){
+
+      }else{
+        $busines->ubicacion = "ver mapa";
+      }
+
+      if($request->descripcion){
+
+      }else{
+        $busines->descripcion = "Sin Descripción";
+      }
       $busines->save();
       flash('Se creado la empresa ' . $busines->name)->success();
       return redirect()->route('markets.index');
@@ -103,6 +119,11 @@ class MarketController extends Controller
       //dd($request);
       $busines = Market::find($id);
       $busines->fill($request->all());
+      if ($request->mp) {
+            # code...
+        }else{
+            $busines->mp = '0';
+        }
       $busines->save();
       flash('Se a editado la empresa ' . $busines->name)->success();
       return redirect()->route('markets.index');

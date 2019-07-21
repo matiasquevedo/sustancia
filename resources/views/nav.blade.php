@@ -1,7 +1,9 @@
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ url('/') }}"><i style="font-size: 25px" class="fas fa-home"></i></a>
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                            <img src="/image/ICONWEB.png" width="20" alt="">
+                    </a>
 
                     <!-- Collapsed Hamburger 
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">

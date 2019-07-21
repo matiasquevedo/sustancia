@@ -15,7 +15,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li ><a href=" {{ route('users.index')}} ">Usuarios<span class="sr-only">(current)</span></a></li>
-        <li ><a href=" {{ route('markets.index')}} ">Empresas<span class="sr-only">(current)</span></a></li>
+        <li ><a href=" {{ route('markets.index')}} ">Comercios<span class="sr-only">(current)</span></a></li>
+        <li ><a href=" {{ route('markets.create')}} ">Nuevo Comercio<span class="sr-only">(current)</span></a></li>
       </ul>
 
       

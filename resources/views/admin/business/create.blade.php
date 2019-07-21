@@ -24,13 +24,13 @@
 
 	{!! Form::open(['route'=>'markets.store', 'method'=>'POST']) !!}
 		<div class="form-group">
-			{!! Form::label('name','Nombre Empresa') !!}
-			{!! Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre','required']) !!}
+			{!! Form::label('name','Nombre Empresa') !!} <p><i>No es obligatorio</i></p>
+			{!! Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre']) !!}
 		</div>
 
 		<div class="form-group">
-			{!! Form::label('ubicacion','Dirección') !!}
-			{!! Form::text('ubicacion',null,['class'=>'form-control','id'=>'direccion','placeholder'=>'Direccion','required']) !!}
+			{!! Form::label('ubicacion','Dirección') !!} <p><i>No es obligatorio</i></p>
+			{!! Form::text('ubicacion',null,['class'=>'form-control','id'=>'direccion','placeholder'=>'Direccion']) !!}
 		</div>
 
 		<div class="form-group" style="display: none;">
@@ -42,12 +42,12 @@
 		</div>
 		<div class="form-group">
 		{!! Form::label('mp','MercadoPago') !!}
-		{!! Form::checkbox('nav', '1', false); !!}
+		{!! Form::checkbox('mp', '1', false); !!}
 		</div>
 
 		<div class="form-group">
-		{!! Form::label('descripcion','Descripcion*') !!}
-		{!! Form::textarea('descripcion',null,['class'=>'form-control','id'=>'trumbowyg-demo','placeholder'=>'Descripcion','required']) !!}
+		{!! Form::label('descripcion','Descripcion*') !!} <p><i>Coloque alguna referencia. Ej: Portón Verde.</i></p>
+		{!! Form::textarea('descripcion',null,['class'=>'form-control','id'=>'trumbowyg-demo','placeholder'=>'Descripcion']) !!}
 		</div>
 		
 		{!! Form::label('Geolocalizació','Geolocalizació (Doble Click para colorcar marca)') !!}

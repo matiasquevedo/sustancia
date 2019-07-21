@@ -5,8 +5,7 @@
 @section('content')
 <div class="container">
     <div class="text-center">
-        <h3>Altas Canchitas amiguero!</h3>
-    </div>    
-    <span class="pelotita">s</span>
+    	<img src="/image/ICONWEB.png" width="200" alt="">
+    </div>
 </div>
 @endsection

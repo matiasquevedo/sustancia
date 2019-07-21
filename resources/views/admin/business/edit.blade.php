@@ -6,7 +6,9 @@
 <div class="container">
 	<h3>Editar Negocio <i>{{$busines->name}}</i></h3>
 
-	{!! Form::open(['route'=>['business.update', $busines->id], 'method'=>'PUT']) !!}
+	{{$busines}}
+
+	{!! Form::open(['route'=>['markets.update',$busines->id], 'method'=>'PUT']) !!}
 		<div class="form-group">
 			{!! Form::label('name','Nombre Empresa') !!}
 			{!! Form::text('name',$busines->name,['class'=>'form-control','placeholder'=>'Nombre','required']) !!}
@@ -23,6 +25,15 @@
 
 		<div class="form-group" style="display: none;">
 			{!! Form::text('longitude',null,['class'=>'form-control','id'=>'longitude','placeholder'=>'Direccion','required']) !!}
+		</div>
+
+		{!! Form::label('mp','MercadoPago') !!}
+		{!! Form::checkbox('mp', '1',($busines->mp =='1'?true:null), ['class' => 'field'])!!}
+
+
+		<div class="form-group">
+		{!! Form::label('descripcion','Descripcion*') !!}
+		{!! Form::textarea('descripcion',$busines->descripcion,['class'=>'form-control','id'=>'trumbowyg-demo','placeholder'=>'Descripcion','required']) !!}
 		</div>
 		
 		{!! Form::label('Geolocalizació','Geolocalizació (Doble Click para colorcar marca)') !!}
