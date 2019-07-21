@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Market;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,6 +23,10 @@ Route::group(['prefix'=>'/v1','middleware' => 'cors'], function(){
 
 	Route::get('/markets',[
 		'uses'=>'MarketController@ApiMarkets'
+	]);
+
+	Route::post('/markets',[
+		'uses'=>'MarketController@ApiMarketsCreate'
 	]);
 
 });

@@ -156,5 +156,15 @@ class MarketController extends Controller
     $json = json_decode($markets,true);
     return response()->json(array('result'=>$json));
   }
-  
+
+  public function ApiMarketsCreate(Request $request){
+    //dd('todo ok', $request);
+    $busines = new Market($request->all());
+      //el administrador deberia elegir al usuario... no ser el usuario
+      $busines->save();
+      return $next($request)
+      ->header(‘Access-Control-Allow-Origin’, ‘*’)
+      ->header(‘Access-Control-Allow-Methods’, ‘GET, POST, PUT, DELETE, OPTIONS’)
+      ->header(‘Access-Control-Allow-Headers’, ‘X-Requested-With, Content-Type, X-Token-Auth, Authorization’);
+    }
 }
