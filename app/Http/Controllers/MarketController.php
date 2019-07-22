@@ -160,11 +160,28 @@ class MarketController extends Controller
   public function ApiMarketsCreate(Request $request){
     //dd('todo ok', $request);
     $busines = new Market($request->all());
-      //el administrador deberia elegir al usuario... no ser el usuario
-      $busines->save();
-      return $next($request)
-      ->header(‘Access-Control-Allow-Origin’, ‘*’)
-      ->header(‘Access-Control-Allow-Methods’, ‘GET, POST, PUT, DELETE, OPTIONS’)
-      ->header(‘Access-Control-Allow-Headers’, ‘X-Requested-With, Content-Type, X-Token-Auth, Authorization’);
+    if($request->name){
+
+    }else{
+      $busines->name = "Sin Nombre";
     }
+
+    if($request->ubicacion){
+
+    }else{
+      $busines->ubicacion = "ver mapa";
+    }
+
+    if($request->descripcion){
+
+    }else{
+      $busines->descripcion = "Sin Descripción";
+    }
+    $busines->save();
+  }
 }
+
+
+
+
+

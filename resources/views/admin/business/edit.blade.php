@@ -6,7 +6,6 @@
 <div class="container">
 	<h3>Editar Negocio <i>{{$busines->name}}</i></h3>
 
-	{{$busines}}
 
 	{!! Form::open(['route'=>['markets.update',$busines->id], 'method'=>'PUT']) !!}
 		<div class="form-group">

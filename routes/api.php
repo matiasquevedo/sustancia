@@ -16,16 +16,25 @@ use App\Market;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
+//header("Access-Control-Allow-Origin: *");
+//header('Access-Control-Allow-Methods: POST,PUT,PATCH,OPTIONS');
+//header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
 
 Route::group(['prefix'=>'/v1','middleware' => 'cors'], function(){
 
 
 
 	Route::get('/markets',[
+		/*header("Access-Control-Allow-Origin: *"),
+		header('Access-Control-Allow-Methods: POST,GET,PUT,PATCH,OPTIONS'),
+		header('Access-Control-Allow-Headers: Origin, X-Requested-With, content-type, Accept'),*/
 		'uses'=>'MarketController@ApiMarkets'
 	]);
 
 	Route::post('/markets',[
+		/*header("Access-Control-Allow-Origin: *"),
+		header('Access-Control-Allow-Methods: POST,GET,PUT,PATCH,OPTIONS'),
+		header('Access-Control-Allow-Headers: Origin, X-Requested-With, content-type, Accept'),*/
 		'uses'=>'MarketController@ApiMarketsCreate'
 	]);
 

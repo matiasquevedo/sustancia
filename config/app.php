@@ -163,6 +163,7 @@ return [
         Cornford\Googlmapper\MapperServiceProvider::class,
         //Compositor de vistas / View Factory
         App\Http\ViewComposers\ComposerServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
 
     ],
 
