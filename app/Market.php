@@ -10,7 +10,7 @@ class Market extends Model
 
         protected $table = "markets";
 
-        protected $fillable = ['id','name','ubicacion','state','mp','descripcion','latitude','longitude'];
+        protected $fillable = ['id','name','ubicacion','state','mp','descripcion','latitude','longitude','locality','subAdministrativeArea'];
 
         public function user(){
         	return $this->belongsTo('App\User');

@@ -23,7 +23,8 @@ class AddTableBusiness extends Migration
             $table->string('ubicacion')->nullable();
             $table->string('latitude')->unique();
             $table->string('longitude')->unique();
-            
+            $table->string('locality')->unique();
+            $table->string('subAdministrativeArea')->unique();
             $table->timestamps();
         });
     }

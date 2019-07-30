@@ -5,6 +5,7 @@
 @section('content')
 
 <div class="container">
+	{{$busines}}
 	<div>
 		<h3>
 			{{$busines->name}}
