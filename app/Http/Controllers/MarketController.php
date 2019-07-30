@@ -179,6 +179,12 @@ class MarketController extends Controller
     }
     $busines->save();
   }
+
+  public function ApiShow($id){
+      $article = Market::get()->find($id);
+      $json = json_decode($article,true);
+      return response()->json(array('result'=>$json));
+  }
 }
 
 
