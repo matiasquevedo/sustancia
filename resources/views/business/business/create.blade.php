@@ -40,6 +40,14 @@
 		<div class="form-group" style="display: none;">
 			{!! Form::text('longitude',null,['class'=>'form-control','id'=>'longitude','placeholder'=>'Direccion','required']) !!}
 		</div>
+
+		<div class="form-group" >
+			{!! Form::text('locality',null,['class'=>'form-control','id'=>'local','placeholder'=>'Direccion','required']) !!}
+		</div>
+
+		<div class="form-group" >
+			{!! Form::text('subAdministrativeArea',null,['class'=>'form-control','id'=>'area','placeholder'=>'Direccion','required']) !!}
+		</div>
 		
 		{!! Form::label('Geolocalizació','Geolocalizació (Doble Click para colorcar marca)') !!}
 		<div id="map" style="width: full; height: 250px;"></div> <br>
@@ -94,6 +102,9 @@
 	    		//map.setCenter(event.latLng);
 	    		$('#latitude').val(location.lat());
 	    		$('#longitude').val(location.lng());
+	    		$('#local').val(location.locality());
+	    		$('#area').val(location.subAdministrativeArea());    		
+
 	    	} else {
 	    		console.log("Reasignacion de location")
 	    		marker.setPosition(location);

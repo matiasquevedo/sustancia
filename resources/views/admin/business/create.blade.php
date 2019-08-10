@@ -29,15 +29,15 @@
 		</div>
 
 		<div class="form-group">
-			{!! Form::label('ubicacion','Dirección') !!} <p><i>No es obligatorio</i></p>
+			{!! Form::label('ubicacion','Dirección') !!} <p><i>No es obligatorio. El sistema sugiere una dirección.</i></p>
 			{!! Form::text('ubicacion',null,['class'=>'form-control','id'=>'direccion','placeholder'=>'Direccion']) !!}
 		</div>
 
-		<div class="form-group" style="display: none;">
+		<div class="form-group" style="display: none !important;">
 			{!! Form::text('latitude',null,['class'=>'form-control','id'=>'latitude','placeholder'=>'Direccion','required']) !!}
 		</div>
 
-		<div class="form-group" style="display: none;">
+		<div class="form-group" style="display: none !important;">
 			{!! Form::text('longitude',null,['class'=>'form-control','id'=>'longitude','placeholder'=>'Direccion','required']) !!}
 		</div>
 		<div class="form-group">
@@ -48,6 +48,14 @@
 		<div class="form-group">
 		{!! Form::label('descripcion','Descripcion*') !!} <p><i>Coloque alguna referencia. Ej: Portón Verde.</i></p>
 		{!! Form::textarea('descripcion',null,['class'=>'form-control','id'=>'trumbowyg-demo','placeholder'=>'Descripcion']) !!}
+		</div>
+
+		<div class="form-group"  style="display:  !important;">
+			{!! Form::text('locality',null,['class'=>'form-control','id'=>'local','placeholder'=>'localidad']) !!}
+		</div>
+
+		<div class="form-group"  style="display:  !important;">
+			{!! Form::text('subAdministrativeArea',null,['class'=>'form-control','id'=>'area','placeholder'=>'area']) !!}
 		</div>
 		
 		{!! Form::label('Geolocalizació','Geolocalizació (Doble Click para colorcar marca)') !!}
@@ -63,8 +71,6 @@
 	<!-- <div style="width: full; height: 250px;">
 		{!! Mapper::render() !!}
 	</div> -->
-
-	
 
 
 
@@ -82,6 +88,8 @@
 	    	zoom: 13
 	    });
 
+	    var geocoder = new google.maps.Geocoder();
+
 
 	    google.maps.event.addListener(map, "click", function(ele) {
 	    	placeMarker(ele.latLng);
@@ -95,6 +103,8 @@
 	    		  position: location,
 	    		  map: map,
 	    		});
+
+	    		console.log(location);
 	    		//map.setCenter(event.latLng);
 	    		var infowindow = new google.maps.InfoWindow({
 	    		  content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
@@ -103,11 +113,50 @@
 	    		//map.setCenter(event.latLng);
 	    		$('#latitude').val(location.lat());
 	    		$('#longitude').val(location.lng());
+
+	    		var latlng = {lat: location.lat(), lng: location.lng()};	    		
+	    		console.log('latlogn:'+latlng);
+	    		geocoder.geocode({'location':latlng}, function(result,status){
+	    			if(status==='OK'){
+	    				var address_components = result[0].address_components;
+	    				var components={}; 
+	    				jQuery.each(address_components, function(k,v1) {jQuery.each(v1.types, function(k2, v2){components[v2]=v1.long_name});});
+	    				console.log(components);
+	    				console.log(components.locality);
+	    				console.log(components.administrative_area_level_2);
+	    				direccion = result[0].formatted_address.split(",");
+	    				$('#direccion').val(direccion[0]);
+	    				$('#local').val(components.locality);
+	    				$('#area').val(components.administrative_area_level_2);    				
+	    			} else {
+	    				console.log("todo mal");
+	    			}
+	    		});
+
 	    	} else {
 	    		console.log("Reasignacion de location")
 	    		marker.setPosition(location);
 	    		$('#latitude').val(location.lat());
 	    		$('#longitude').val(location.lng());
+
+	    		var latlng = {lat: location.lat(), lng: location.lng()};	    		
+	    		console.log('latlogn:'+latlng);
+	    		geocoder.geocode({'location':latlng}, function(result,status){
+	    			if(status==='OK'){
+	    				var address_components = result[0].address_components;
+	    				var components={}; 
+	    				jQuery.each(address_components, function(k,v1) {jQuery.each(v1.types, function(k2, v2){components[v2]=v1.long_name});});
+	    				console.log(components);
+	    				console.log(components.locality);
+	    				console.log(components.administrative_area_level_2);
+	    				direccion = result[0].formatted_address.split(",");
+	    				$('#direccion').val(direccion[0]);
+	    				$('#local').val(components.locality);
+	    				$('#area').val(components.administrative_area_level_2);    				
+	    			} else {
+	    				console.log("todo mal");
+	    			}
+	    		}); 
 	    	}
 	    }
 

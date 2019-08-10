@@ -31,6 +31,13 @@ Route::group(['prefix'=>'/v1','middleware' => 'cors'], function(){
 		'uses'=>'MarketController@ApiMarkets'
 	]);
 
+	Route::get('/markets/locality/{locality}/area/{area}',[
+		/*header("Access-Control-Allow-Origin: *"),
+		header('Access-Control-Allow-Methods: POST,GET,PUT,PATCH,OPTIONS'),
+		header('Access-Control-Allow-Headers: Origin, X-Requested-With, content-type, Accept'),*/
+		'uses'=>'MarketController@ApiMarketsLocality'
+	]);
+
 	Route::post('/markets',[
 		/*header("Access-Control-Allow-Origin: *"),
 		header('Access-Control-Allow-Methods: POST,GET,PUT,PATCH,OPTIONS'),

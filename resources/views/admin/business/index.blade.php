@@ -13,6 +13,8 @@
 		    <tr>
 		      <th>Nombre</th>
 		      <th>Ubicacion</th>
+		      <th>Localidad</th>
+		      <th>Area</th>
 		      <th>Estado</th>
 		      <th>Accion</th>
 		    </tr>
@@ -30,6 +32,8 @@
 				<tr>									
 					<td><a href="{{ route('markets.show', $busines->id) }}">{{$busines->name}}</a>  </td>
 					<td> {{$busines->ubicacion}} </td>
+					<td> {{$busines->locality}} </td>
+					<td> {{$busines->subAdministrativeArea}} </td>
 					<td>
 						@if($busines->state=='0')
 							<span class="badge badge-danger">Sin Publicar</span>

@@ -39,26 +39,43 @@ class MarketController extends Controller
    */
   public function store(Request $request)
   {
-      //
-      //dd($request);
+      //     dd($request);
       $busines = new Market($request->all());
+      //tratamientos name
       if($request->name){
 
       }else{
         $busines->name = "Sin Nombre";
       }
-
+      //tratamientos ubicacion
       if($request->ubicacion){
 
       }else{
         $busines->ubicacion = "ver mapa";
       }
-
+      //tratamientos descripcion
       if($request->descripcion){
 
       }else{
         $busines->descripcion = "Sin Descripción";
       }
+
+
+      //tratamientos localidad
+      if($request->locality){
+
+      }else{
+        $busines->locality = $request->subAdministrativeArea;
+      }
+
+      //tratamientos localidad
+      if($request->subAdministrativeArea){
+
+      }else{
+        $busines->subAdministrativeArea = $request->locality;
+      }
+
+
       $busines->save();
       flash('Se creado la empresa ' . $busines->name)->success();
       return redirect()->route('markets.index');
@@ -155,6 +172,12 @@ class MarketController extends Controller
     $markets = DB::table('marketspostview')->get();
     $json = json_decode($markets,true);
     return response()->json(array('result'=>$json));
+  }
+
+  public function ApiMarketsLocality($locality,$area){
+      $markets = DB::table('marketspostview')->where('locality','LIKE',"%$locality%")->where('subAdministrativeArea','LIKE',"%$area%")->get();        
+      $json = json_decode($markets,true);
+      return response()->json(array('result'=>$json));
   }
 
   public function ApiMarketsCreate(Request $request){

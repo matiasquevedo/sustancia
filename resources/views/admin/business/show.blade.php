@@ -5,7 +5,8 @@
 @section('content')
 
 <div class="container">
-	{{$busines}}
+	<pre>{{$busines}}</pre>
+	
 	<div>
 		<h3>
 			{{$busines->name}}
