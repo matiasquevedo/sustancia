@@ -37,6 +37,14 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function(){
 		'uses'=>'MarketController@undpost',
 		'as'=>'market.undpost'
 	]);
+
+	Route::get('productos/destroy/varios',[
+		'uses'=>'MarketController@varios',
+		'as'=>'productos.varios'
+	]);
+
+	Route::resource('notifications','NotificationController');
+
 });
 
 

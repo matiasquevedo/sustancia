@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Market;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use LaravelFCM\Message\OptionsBuilder;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use FCM;
+use App\Notification;
+use LaravelFCM\Message\Topics;
 
 class MarketController extends Controller
 {
@@ -19,6 +25,8 @@ class MarketController extends Controller
       $business = Market::orderBy('id','DESC')->paginate(20);
       return view('admin.business.index')->with('business',$business);
   }
+
+  
 
   /**
    * Show the form for creating a new resource.
@@ -160,6 +168,44 @@ class MarketController extends Controller
       return redirect()->route('markets.index');
   }
 
+  public function varios(Request $request){
+      $val=$request->act;
+      $myCheckboxes = $request->input('box');
+
+      if ($myCheckboxes == null) {            
+          return redirect()->route('markets.index');
+      } else {
+          if ($val == '0') {
+
+             foreach ($myCheckboxes as $b) {
+                 # code...
+              $article = Market::find($b);
+              $article->delete();
+             }
+             return redirect()->route('markets.index');
+          } elseif ($val == '1') {
+              foreach ($myCheckboxes as $b) {
+                 # code...
+              $article = Market::find($b);
+              $article->state = '1';
+              $article->save();
+             }
+             return redirect()->route('markets.index');
+              
+          } elseif ($val == '2') {
+              foreach ($myCheckboxes as $b) {
+                 # code...
+              $article = Market::find($b);
+              $article->state = '0';
+              $article->save();
+             }
+             return redirect()->route('markets.index');
+              
+          }
+          
+      }
+  }
+
 
   /////////////////////////////API///////////////////////////
   /////////////////////////////API///////////////////////////
@@ -182,24 +228,43 @@ class MarketController extends Controller
 
   public function ApiMarketsCreate(Request $request){
     //dd('todo ok', $request);
+    //     dd($request);
     $busines = new Market($request->all());
+    //tratamientos name
     if($request->name){
 
     }else{
       $busines->name = "Sin Nombre";
     }
-
+    //tratamientos ubicacion
     if($request->ubicacion){
 
     }else{
       $busines->ubicacion = "ver mapa";
     }
-
+    //tratamientos descripcion
     if($request->descripcion){
 
     }else{
       $busines->descripcion = "Sin Descripción";
     }
+
+
+    //tratamientos localidad
+    if($request->locality){
+
+    }else{
+      $busines->locality = $request->subAdministrativeArea;
+    }
+
+    //tratamientos localidad
+    if($request->subAdministrativeArea){
+
+    }else{
+      $busines->subAdministrativeArea = $request->locality;
+    }
+
+
     $busines->save();
   }
 

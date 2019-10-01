@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container">
-	<pre>{{$busines}}</pre>
+	
 	
 	<div>
 		<h3>
@@ -41,7 +41,8 @@
 
 
 	<div id="map" style="width: full; height: 250px;"></div> <br>	
-
+	
+	<pre><code>{{$busines}}</code></pre>
 	
 </div>
 @endsection

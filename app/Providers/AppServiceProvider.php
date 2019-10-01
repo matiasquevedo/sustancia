@@ -19,4 +19,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
     }
+
+    public function register()
+    {
+        $this->app->singleton('mailer', function ($app) {
+            return $app->loadComponent('mail', 'Illuminate\Mail\MailServiceProvider', 'mailer');
+        });
+    }
 }

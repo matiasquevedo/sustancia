@@ -146,7 +146,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Illuminate\Mail\MailServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -164,6 +164,7 @@ return [
         //Compositor de vistas / View Factory
         App\Http\ViewComposers\ComposerServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
+        LaravelFCM\FCMServiceProvider::class,
 
     ],
 
@@ -216,6 +217,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'FCM'      => LaravelFCM\Facades\FCM::class,
+        'FCMGroup' => LaravelFCM\Facades\FCMGroup::class,
 
     ],
 

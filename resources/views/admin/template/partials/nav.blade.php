@@ -17,7 +17,10 @@
         <li ><a href=" {{ route('users.index')}} ">Usuarios<span class="sr-only">(current)</span></a></li>
         <li ><a href=" {{ route('markets.index')}} ">Comercios<span class="sr-only">(current)</span></a></li>
         <li ><a href=" {{ route('markets.create')}} ">Nuevo Comercio<span class="sr-only">(current)</span></a></li>
+        <li ><a class="dropdown-item" href="{{ route('notifications.index')}}">Lista de Notificaciones</a></li>
+        <li ><a class="dropdown-item" href=" {{ route('notifications.create')}} ">Nueva Notificacion</a></li>
       </ul>
+
 
       
       <ul class="nav navbar-nav navbar-right">
