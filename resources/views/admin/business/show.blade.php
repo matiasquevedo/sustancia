@@ -9,7 +9,7 @@
 	
 	<div>
 		<h3>
-			{{$busines->name}}
+			{{$busines->name}} - <pre><code> {{$busines->id}}</code></pre>
 
 			@if($busines->mp == '0')
 				
@@ -22,11 +22,8 @@
 			@elseif($busines->state=='1')
 				<a href="{{route('market.undpost',$busines->id)}}" class="btn btn-info">Despublicar</a>
 			@endif
-		</h3>
 
-
-
-		
+		</h3>		
 	</div>
 
 
@@ -44,13 +41,35 @@
 	
 	<pre><code>{{$busines}}</code></pre>
 	<pre><code>{{$busines->image}}</code></pre>
+
+	@if($busines->image)
+	@else
+		{!! Form::open(['route'=>'market.imageUpdate', 'method'=>'POST','files'=>'true']) !!}
+						
+			<div class="form-group">
+			{!! Form::label('image','Imagen Estatica') !!}
+			<div id="images"></div><br>
+			{!! Form::hidden('image','foto',['id'=>'inp_image']) !!}
+			</div>
+
+			<div class="form-group">
+			{!! Form::hidden('comercio',$busines->id,['id'=>'inp_image']) !!}
+			</div>
+
+			<div class="form-group">
+				{!! Form::submit('Actualizar imagen estática',['class'=>'btn btn-primary']) !!}
+			</div>
+
+
+		{!! Form::close() !!}
+	@endif
 	
 </div>
 @endsection
 
 @section('js')
 <script>
-	var mymap = L.map('map').setView([{{$busines->latitude}},{{$busines->longitude}}], 15);
+	var mymap = L.map('map').setView([{{$busines->latitude}},{{$busines->longitude}}], 17);
 	var address;
 
 	/* USANDO MAPBOX*/
@@ -88,6 +107,26 @@
 	marker.setLatLng([{{$busines->latitude}},{{$busines->longitude}}]).addTo(mymap);
 	popup.setLatLng([{{$busines->latitude}},{{$busines->longitude}}]).setContent('Comercio: {{$busines->name}} <br> Direccion: {{$busines->ubicacion}}');
 	marker.bindPopup(popup).openPopup();
+
+	@if($busines->image)
+
+	@else
+		leafletImage(mymap, function(err, canvas) {
+			console.log(mymap.getSize());
+		    // now you have canvas
+		    // example thing to do with that canvas:
+		    var img = document.createElement('img');
+		    var dimensions = mymap.getSize();
+		    img.width = dimensions.x;
+		    img.height = dimensions.y;
+		    img.src = canvas.toDataURL();
+		    console.log(canvas.toDataURL("image/png"));
+		    document.getElementById('images').innerHTML = '';
+		    document.getElementById('images').appendChild(img);
+		    document.getElementById('inp_image').value = canvas.toDataURL();
+		});
+	@endif
+	
 
 	// var map;
 	// function initMap() {

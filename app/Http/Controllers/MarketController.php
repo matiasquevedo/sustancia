@@ -116,6 +116,37 @@ class MarketController extends Controller
       return redirect()->route('markets.index');
   }
 
+  public function imageUpdate(Request $request){
+    //dd($request);
+    $busines = Market::find($request->comercio);
+    //dd($busines)
+    if($busines->image){
+      dd("tiene imagen");
+    }else{
+      if($request->image){
+          $originalImage= $request->image;
+          //dd($originalImage);
+          $thumbnailImage = Image::make($originalImage)->encode('data-url');;
+          $thumbnailPath = public_path().'/image/mapas/thumbnail/';
+          $originalPath = public_path().'/image/mapas/';
+          $name = 'mapa_'.$busines->id.'_'.time().'.png';
+          //dd($thumbnailImage);
+          $thumbnailImage->save($originalPath.$name);
+          $thumbnailImage->resize(150,150);
+          $thumbnailImage->save($thumbnailPath.$name);
+      }
+      $image = new imageMap();
+      $image->img = $name;
+      $image->url = '/image/mapas/'.$name;
+      $image->tumb = '/image/mapas/thumbnail/'.$name;
+      $image->market()->associate($busines);
+      //dd($image);
+      $image->save();
+      flash('Se ha añadido la imagen estatica de ' . $busines->name)->success();
+    }
+    return redirect()->route('markets.index');
+  }
+
   /**
    * Display the specified resource.
    *

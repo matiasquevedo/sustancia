@@ -14,7 +14,25 @@ class Marketspostview extends Migration
     public function up()
     {
         //
-        DB::statement("CREATE VIEW marketspostview AS SELECT markets.id, markets.name, markets.descripcion,markets.mp, markets.ubicacion, markets.latitude, markets.longitude, markets.created_at, markets.updated_at,markets.locality,markets.subAdministrativeArea FROM markets WHERE state = '1' ORDER BY markets.updated_at DESC;");       
+        DB::statement("CREATE VIEW marketspostview AS SELECT markets.id, 
+                                markets.name, 
+                                markets.descripcion,
+                                markets.mp, 
+                                markets.ubicacion, 
+                                markets.latitude, 
+                                markets.longitude, 
+                                markets.created_at, 
+                                markets.updated_at,
+                                markets.locality,
+                                markets.subAdministrativeArea,
+                                image_maps.img,
+                                image_maps.market_id,
+                                image_maps.url,
+                                image_maps.tumb
+                                FROM markets, image_maps
+                                WHERE state = '1' 
+                                AND image_maps.market_id = markets.id
+                                ORDER BY markets.updated_at DESC;");       
 
     }
 

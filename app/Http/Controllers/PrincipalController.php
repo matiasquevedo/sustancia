@@ -9,7 +9,7 @@ class PrincipalController extends Controller
 {
     //
     public function index(){
-    	$markets = Market::all();
+    	$markets = Market::all()->where('state','1');
         return view('home')->with('markets',$markets);
     }
 }

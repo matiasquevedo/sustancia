@@ -23,6 +23,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function(){
 		'as'=>'markets.destroy'
 	]);
 
+	Route::post('/market/imageupdate',[
+		'uses'=>'MarketController@imageUpdate',
+		'as'=>'market.imageUpdate'
+	]);
+
 	Route::resource('users','UsersController');
 	Route::get('users/{id}/destroy',[
 		'uses'=>'UsersController@destroy',
