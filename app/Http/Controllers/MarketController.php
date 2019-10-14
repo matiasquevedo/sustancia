@@ -10,6 +10,8 @@ use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
 use FCM;
 use App\Notification;
+use App\imageMap;
+use Image;
 use LaravelFCM\Message\Topics;
 
 class MarketController extends Controller
@@ -47,8 +49,10 @@ class MarketController extends Controller
    */
   public function store(Request $request)
   {
-      //     dd($request);
+      //dd($request);
       $busines = new Market($request->all());
+      $name = '';
+
       //tratamientos name
       if($request->name){
 
@@ -83,8 +87,31 @@ class MarketController extends Controller
         $busines->subAdministrativeArea = $request->locality;
       }
 
-
       $busines->save();
+
+      if($request->image){
+          $originalImage= $request->image;
+          //dd($originalImage);
+          $thumbnailImage = Image::make($originalImage)->encode('data-url');;
+          $thumbnailPath = public_path().'/image/mapas/thumbnail/';
+          $originalPath = public_path().'/image/mapas/';
+          $name = 'mapa_'.$busines->id.'_'.time().'.png';
+          //dd($thumbnailImage);
+          $thumbnailImage->save($originalPath.$name);
+          $thumbnailImage->resize(150,150);
+          $thumbnailImage->save($thumbnailPath.$name);
+      }
+
+      
+
+      $image = new imageMap();
+      $image->img = $name;
+      $image->url = '/image/mapas/'.$name;
+      $image->tumb = '/image/mapas/thumbnail/'.$name;
+      $image->market()->associate($busines);
+      //dd($image);
+      $image->save();
+      
       flash('Se creado la empresa ' . $busines->name)->success();
       return redirect()->route('markets.index');
   }

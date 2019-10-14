@@ -16,8 +16,8 @@ class Market extends Model
         	return $this->belongsTo('App\User');
         }
 
-    	public function fields(){
-    		return $this->hasMany('App\Field');
-    	}
+        public function image(){
+            return $this->hasOne('App\imageMap');
+        }
     	
 }

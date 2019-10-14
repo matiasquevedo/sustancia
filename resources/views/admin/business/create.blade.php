@@ -22,7 +22,7 @@
 <div class="container">
 	<h3>Nuevo Negocio</h3>
 
-	{!! Form::open(['route'=>'markets.store', 'method'=>'POST']) !!}
+	{!! Form::open(['route'=>'markets.store', 'method'=>'POST','files'=>'true']) !!}
 		<div class="form-group">
 			{!! Form::label('name','Nombre Empresa') !!} <p><i>No es obligatorio</i></p>
 			{!! Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre']) !!}
@@ -61,16 +61,19 @@
 		{!! Form::label('Geolocalizació','Geolocalizació (Click para colorcar marca)') !!}
 		<div id="map" style="width: full; height: 300px;"></div> <br>
 
+		
+		<div class="form-group">
+		{!! Form::label('image','Imagen Estatica') !!}
+		<div id="images"></div><br>
+		{!! Form::hidden('image','foto',['id'=>'inp_image']) !!}
+		</div>
+
 		<div class="form-group">
 			{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
 		</div>
 
 
 	{!! Form::close() !!}
-
-	<!-- <div style="width: full; height: 250px;">
-		{!! Mapper::render() !!}
-	</div> -->
 
 
 
@@ -139,6 +142,20 @@
 		    	$('#local').val(address.address.city);
 		    }
 		    $('#area').val(address.address.city);   
+		});
+		leafletImage(mymap, function(err, canvas) {
+			console.log(mymap.getSize());
+		    // now you have canvas
+		    // example thing to do with that canvas:
+		    var img = document.createElement('img');
+		    var dimensions = mymap.getSize();
+		    img.width = dimensions.x;
+		    img.height = dimensions.y;
+		    img.src = canvas.toDataURL();
+		    console.log(canvas.toDataURL("image/png"));
+		    document.getElementById('images').innerHTML = '';
+		    document.getElementById('images').appendChild(img);
+		    document.getElementById('inp_image').value = canvas.toDataURL();
 		});
 		
 

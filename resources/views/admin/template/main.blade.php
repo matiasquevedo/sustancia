@@ -24,6 +24,7 @@
 		<script src="{{asset('plugins/leaflet/leaflet.js')}}"></script>
 		<script src="{{asset('plugins/leaflet-geocoder/dist/Control.Geocoder.js')}}"></script>		
 		<script src="{{asset('plugins/leaflet-fullscreen/dist/leaflet.fullscreen.js')}}"></script>
+		<script src='https://unpkg.com/leaflet-image@0.4.0/leaflet-image.js'></script>
 		@yield('js')
 	</body>
 

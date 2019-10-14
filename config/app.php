@@ -165,6 +165,7 @@ return [
         App\Http\ViewComposers\ComposerServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         LaravelFCM\FCMServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -219,6 +220,7 @@ return [
         'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
         'FCM'      => LaravelFCM\Facades\FCM::class,
         'FCMGroup' => LaravelFCM\Facades\FCMGroup::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

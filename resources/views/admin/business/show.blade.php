@@ -40,19 +40,18 @@
 
 
 
-	<div id="map" style="width: full; height: 250px;"></div> <br>	
+	<div id="map" style="width: full; height: 100%;"></div> <br>
 	
 	<pre><code>{{$busines}}</code></pre>
+	<pre><code>{{$busines->image}}</code></pre>
 	
 </div>
 @endsection
 
 @section('js')
 <script>
-	var mymap = L.map('map').setView([{{$busines->latitude}},{{$busines->longitude}}], 13);
-	mymap.addControl(new L.Control.Fullscreen());
+	var mymap = L.map('map').setView([{{$busines->latitude}},{{$busines->longitude}}], 15);
 	var address;
-
 
 	/* USANDO MAPBOX*/
 	
@@ -62,7 +61,6 @@
 		id: 'mapbox.streets',
 		accessToken: 'pk.eyJ1IjoibWF0aWFzcXVldmVkbyIsImEiOiJjazFwaW5kMHAwMWx3M2NrNDhrOXFkeTg0In0.6iha-fBESxiMBBV_mnPnOg'
 	}).addTo(mymap);
-	var geocoder = L.Control.geocoder().addTo(mymap);
 
 
 
@@ -90,7 +88,6 @@
 	marker.setLatLng([{{$busines->latitude}},{{$busines->longitude}}]).addTo(mymap);
 	popup.setLatLng([{{$busines->latitude}},{{$busines->longitude}}]).setContent('Comercio: {{$busines->name}} <br> Direccion: {{$busines->ubicacion}}');
 	marker.bindPopup(popup).openPopup();
-
 
 	// var map;
 	// function initMap() {

@@ -41,7 +41,7 @@ class BusinessController extends Controller
     public function store(Request $request)
     {
         //
-        //dd($request);
+        dd($request);
         $busines = new Busines($request->all());
         //el administrador deberia elegir al usuario... no ser el usuario
         $busines->user_id = \Auth::user()->id;
