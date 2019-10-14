@@ -1,23 +1,11 @@
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0px !important;">
             <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                            <img src="/image/ICONWEB.png" width="20" alt="">
+                <div style="border-radius: 50%;background-color: blue">
+                    <a class="navbar-brand" href="{{ url('/') }}" style="position: relative;background: white;border-radius: 50%;top: 0px;">
+                            <img src="/image/ICONWEB.png" width="20" alt="" style="bottom: 8px;position: relative;">
                     </a>
-
-                    <!-- Collapsed Hamburger 
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar">sdfsdf</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>-->
-
-
-
-                    <!-- Branding Image -->
-
                 </div>
+                
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->

@@ -6,12 +6,12 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>@yield('title')</title>
-
-        <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/full-width-pics.css')}}">  
+  
         <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.css')}}">
-        <link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.css')}}">
-        <link rel="stylesheet" href="{{ asset('plugins/trumbowyg/dist/ui/trumbowyg.css')}}">
         <link rel="stylesheet" href="{{ asset('plugins/fontawesome/css/all.css')}}">
+        <link rel="stylesheet" href="{{ asset('plugins/leaflet/leaflet.css')}}">
+        <link rel="stylesheet" href="{{ asset('plugins/leaflet-geocoder/dist/Control.Geocoder.css')}}">
+        <link rel="stylesheet" href="{{ asset('plugins/leaflet-fullscreen/dist/leaflet.fullscreen.css')}}">
     </head>
     <body>
         @include('nav')
@@ -24,10 +24,15 @@
         </section>
         <script src="{{asset('plugins/jquery/jquery.js')}}"></script>
         <script src="{{asset('plugins/bootstrap/js/bootstrap.js')}}"></script>
-        <script src="{{asset('plugins/chosen/chosen.jquery.js')}}"></script>
-        <script src="{{asset('plugins/trumbowyg/dist/trumbowyg.js')}}"></script>
         <script src="{{asset('plugins/fontawesome/js/all.js')}}"></script>
+        <script src="{{asset('plugins/leaflet/leaflet.js')}}"></script>
+        <script src="{{asset('plugins/leaflet-geocoder/dist/Control.Geocoder.js')}}"></script>      
+        <script src="{{asset('plugins/leaflet-fullscreen/dist/leaflet.fullscreen.js')}}"></script>
         @yield('js')
     </body>
 
 </html>
+
+<link rel="stylesheet" href="{{ asset('plugins/leaflet/leaflet.css')}}">
+<link rel="stylesheet" href="{{ asset('plugins/leaflet-geocoder/dist/Control.Geocoder.css')}}">
+<link rel="stylesheet" href="{{ asset('plugins/leaflet-fullscreen/dist/leaflet.fullscreen.css')}}">

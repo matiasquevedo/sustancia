@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Market;
 
 class PrincipalController extends Controller
 {
     //
     public function index(){
-        return view('home');
+    	$markets = Market::all();
+        return view('home')->with('markets',$markets);
     }
 }
