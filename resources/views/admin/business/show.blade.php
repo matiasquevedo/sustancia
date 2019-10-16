@@ -93,17 +93,12 @@
 
 
 
-	var circle = L.circle([-34.618669, -68.339767], {
-		color: 'red',
-		fillColor: '#f03',
-		fillOpacity: 0.1,
-		radius: 50
+	var circle = L.circle([{{$busines->latitude}},{{$busines->longitude}}], {
+		color: '#207ac9',
+		fillColor: '#207ac9',
+		fillOpacity: 0.4,
+		radius: 20
 	}).addTo(mymap);
-	var polygon = L.polygon([
-		[-34.618669, -68.339767],
-		[-34.618669, -68.339767],
-		[-34.618669, -68.339767]
-	]).addTo(mymap);
 	marker.setLatLng([{{$busines->latitude}},{{$busines->longitude}}]).addTo(mymap);
 	popup.setLatLng([{{$busines->latitude}},{{$busines->longitude}}]).setContent('Comercio: {{$busines->name}} <br> Direccion: {{$busines->ubicacion}}');
 	marker.bindPopup(popup).openPopup();

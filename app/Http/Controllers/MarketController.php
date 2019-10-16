@@ -327,7 +327,8 @@ class MarketController extends Controller
   }
 
   public function ApiShow($id){
-      $article = Market::get()->find($id);
+      $article = Market::with('image')->get()->find($id);
+      //dd($article);
       $json = json_decode($article,true);
       return response()->json(array('result'=>$json));
   }
