@@ -1,10 +1,20 @@
 @extends('welcome')
 
-@section('title','Home')
+@section('title','Inicio Sustanciero')
 
 @section('content')
 <div class="mw-100 mh-100">
-	<div id="map" style="width: full; height: 100%;"></div>
+	<div class="mt-5 text-center" style="z-index: 1000 !important;">
+		<h5>
+			{{$ip}} <br>
+			{{$data['latitude']}}, {{$data['longitude']}} <br>
+			{{$data['city']}}
+		</h5>
+	</div>
+	<div id="map" style="width: full; height: 100%;">
+
+		
+	</div>
 </div>
 {{-- <div class="container">
     <br>
@@ -14,10 +24,14 @@
 @endsection
 
 @section('js')
-<script>
-	var mymap = L.map('map').setView([-34.57443, -68.329468], 5);
+<script>	
+
+	var mymap = L.map('map').setView([{{$data['latitude']}}, {{$data['longitude']}}], 16);
 	mymap.addControl(new L.Control.Fullscreen());
-	var address;
+	
+
+
+	
 
 
 	/* USANDO MAPBOX*/
@@ -41,7 +55,6 @@
 	@foreach($markets as $market)
 		var popup = L.popup();
 		var marker = L.marker();
-		console.log('{{$market->name}}')
 		marker.setLatLng([{{$market->latitude}},{{$market->longitude}}]).addTo(mymap);
 		popup.setLatLng([{{$market->latitude}},{{$market->longitude}}]).setContent('Comercio: {{$market->name}} <br> Direccion: {{$market->ubicacion}}');
 		marker.bindPopup(popup).openPopup();
